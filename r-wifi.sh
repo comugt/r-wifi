@@ -5,8 +5,10 @@ systemctl restart avahi-daemon
 systemctl restart wpa_supplicant
 systemctl restart NetworkManager
 #Se cambia manualmente la configuración de la tarjeta de red Wifi
-ip link set wlo1 down
-iw dev wlo1 set type managed
-ip link set wlo1 up
+echo "Ingrese la interface a resturar:"
+read intf
+ip link set $intf down
+iw dev $intf set type managed
+ip link set $intf up
 #Se reinicia nuevamente el proceso que controla las redes del equipo
 systemctl restart NetworkManager
